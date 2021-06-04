@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovCotação</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css"/>
+  </head>
+  <body>
+    <div class="loginContainer">
+      <header>
+        <h1>MovCotação</h1>
+      </header>
+
+      <strong>Login</strong>
+
+      <form>
+        <input
+          type="text"
+          name="user"
+          placeholder="Usuário, Email ou CPF/CNPJ"
+        />
+
+        <input
+          type="password"
+          name="user"
+          placeholder="Senha"
+        />
+
+        <button
+         type="submit"
+        >
+          Entrar
+        </button>
+      </form>
+
+      <p>
+        <a href="#">Esqueceu sua senha? Clique aqui</a>
+      </p>
+    </div>
+
+    <script>
+      async function teste() {
+        const response = await fetch('http://localhost:8080/api');
+        const data = await response.json();
+
+        console.log({ data });
+      }
+
+      document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+
+        console.log('Submit form');
+
+        window.location.href = '/cotacao';
+      })
+
+      teste();
+    </script>
+  </body>
+</html>

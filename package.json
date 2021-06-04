@@ -1,0 +1,20 @@
+{
+  "name": "movcotacao",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Eldovane/movcotacao.git",
+  "author": "Pedro Henrique Ribeiro Moreira <p3drohenrique.moreira@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "postcss:watch": "postcss ./src/assets/css/tailwind.css -o ./public/css/styles.css --watch",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/webpack-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.3",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "webpack-mix": "^3.0.0"
+  }
+}

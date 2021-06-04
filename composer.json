@@ -1,0 +1,30 @@
+{
+    "name": "eldovane/movcotacao",
+    "description": "Sistema de cotaçao online",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+      "psr-4": {
+        "App\\": "app/"
+      }
+    },
+    "authors": [
+        {
+          "name": "Eldovane Valadares",
+          "email": "eldovane@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.4",
+        "slim/twig-view": "^3.2",
+        "php-di/php-di": "^6.3",
+        "vlucas/phpdotenv": "^5.3",
+        "firebase/php-jwt": "^5.2",
+        "robmorgan/phinx": "^0.12.7"
+    },
+    "scripts": {
+      "start": "php -S localhost:8080 -t public",
+      "phinx": "vendor/bin/phinx"
+    }
+}

@@ -1,0 +1,136 @@
+@tailwind base;
+
+/* Todos  */
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  @apply h-screen p-1 sm:p-0 w-screen flex flex-col justify-center items-center bg-center;
+  background-image: url('/svg/background_lines.svg');
+}
+
+/* Fim 'todos' */
+
+/* Tela de login */
+.loginContainer {
+  @apply container w-full sm:w-1/3 bg-white shadow-md rounded-md;
+}
+
+.loginContainer header {
+  @apply bg-green-700 rounded-tl-md rounded-tr-md mb-3 py-2;
+}
+
+.loginContainer header h1 {
+  @apply text-2xl font-bold text-center text-white;
+}
+
+.loginContainer strong {
+  @apply font-bold text-gray-800 text-lg px-3;
+}
+
+.loginContainer form {
+  @apply container my-2 flex flex-col items-center p-3;
+}
+
+.loginContainer form input {
+  @apply w-full rounded-md border-gray-300 border-2 py-1 px-2 outline-none;
+}
+
+.loginContainer form input:nth-child(2) {
+  @apply mt-3;
+}
+
+.loginContainer form button {
+  @apply rounded-md bg-green-500 text-white p-2 mt-5 w-24 hover:bg-green-600 font-bold;
+}
+
+.loginContainer p {
+  @apply text-base text-center my-4;
+}
+
+.loginContainer p a {
+  @apply text-blue-700;
+}
+
+/* Fim 'tela de login' */
+
+/* Tela de cotação */
+
+.quotation {
+  @apply bg-white w-full sm:w-11/12 rounded-md relative;
+}
+
+.quotation header {
+  @apply bg-green-700 py-5 px-10 flex flex-col sm:flex-row justify-between items-center
+   rounded-t-md text-white;
+}
+
+.quotation header h1 {
+  @apply text-2xl mb-4 sm:mb-0 font-bold;
+}
+
+.quotation header div {
+  @apply w-full sm:w-auto flex flex-col sm:flex-row justify-between items-center;
+}
+
+.quotation header div form {
+  @apply w-full sm:w-auto flex justify-center items-center;
+}
+
+.quotation header div form input {
+  @apply flex-grow bg-white opacity-50 text-gray-800 p-2 placeholder-black outline-none;
+}
+
+.quotation header div form button {
+  @apply bg-white opacity-50 text-black py-2 px-3;
+}
+
+.quotation header div nav {
+  @apply ml-14 hidden sm:block;
+}
+
+.quotation header div nav ul {
+  @apply flex justify-around;
+}
+
+.quotation header div nav ul li {
+  @apply text-lg;
+}
+
+.quotation header div nav ul li + li {
+  @apply ml-10;
+}
+
+.quotation header div nav ul li a {
+  @apply hover:underline;
+}
+
+/* Fim "Tela de cotação" */
+
+/* Tela 404 */
+
+.notFoundContainer {
+  @apply bg-white w-1/3 py-5 px-4 rounded-md flex flex-col justify-center items-center;
+}
+
+.notFoundContainer h2 {
+  @apply font-bold text-3xl text-gray-900 mb-0 text-center;
+}
+
+.notFoundContainer h3 {
+  @apply font-bold text-2xl text-gray-800 mb-2 text-center;
+}
+
+.notFoundContainer p {
+  @apply text-lg text-gray-700 text-center mb-5;
+}
+
+.notFoundContainer button {
+  @apply bg-white border-gray-900 border-2 p-2 text-gray-900 rounded-md w-4/12;
+}
+
+/* Fim "Tela 404" */
+
+@tailwind components;
+@tailwind utilities;

@@ -3,18 +3,23 @@
 /* Todos  */
 * {
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-  @apply h-screen p-1 sm:p-0 w-screen flex flex-col justify-center items-center bg-center;
+  @apply w-full h-screen bg-center box-border;
   background-image: url('/svg/background_lines.svg');
+}
+
+.appContainer {
+  @apply p-1 h-full w-full sm:p-0 flex flex-col justify-center items-center;
 }
 
 /* Fim 'todos' */
 
 /* Tela de login */
 .loginContainer {
-  @apply container w-full sm:w-1/3 bg-white shadow-md rounded-md;
+  @apply container w-full sm:w-96 bg-white shadow-md rounded-md;
 }
 
 .loginContainer header {
@@ -58,52 +63,261 @@ body {
 /* Tela de cotação */
 
 .quotation {
-  @apply bg-white w-full sm:w-11/12 rounded-md relative;
+  @apply
+    w-full sm:w-11/12
+    sm:rounded-md sm:mx-auto sm:mt-8;
 }
 
-.quotation header {
-  @apply bg-green-700 py-5 px-10 flex flex-col sm:flex-row justify-between items-center
-   rounded-t-md text-white;
+.quotation > header {
+  @apply
+    bg-green-700 text-white
+    py-5 px-10
+    flex flex-col justify-between items-center
+    sm:rounded-t-md
+    sm:flex-row;
 }
 
-.quotation header h1 {
+.quotation > header h1 {
   @apply text-2xl mb-4 sm:mb-0 font-bold;
 }
 
-.quotation header div {
+.quotation > header div {
   @apply w-full sm:w-auto flex flex-col sm:flex-row justify-between items-center;
 }
 
-.quotation header div form {
+.quotation > header div form {
   @apply w-full sm:w-auto flex justify-center items-center;
 }
 
-.quotation header div form input {
+.quotation > header div form input {
   @apply flex-grow bg-white opacity-50 text-gray-800 p-2 placeholder-black outline-none;
 }
 
-.quotation header div form button {
+.quotation > header div form button {
   @apply bg-white opacity-50 text-black py-2 px-3;
 }
 
-.quotation header div nav {
+.quotation > header div nav {
   @apply ml-14 hidden sm:block;
 }
 
-.quotation header div nav ul {
+.quotation > header div nav ul {
   @apply flex justify-around;
 }
 
-.quotation header div nav ul li {
+.quotation > header div nav ul li {
   @apply text-lg;
 }
 
-.quotation header div nav ul li + li {
+.quotation > header div nav ul li + li {
   @apply ml-10;
 }
 
-.quotation header div nav ul li a {
+.quotation > header div nav ul li a {
   @apply hover:underline;
+}
+
+.quotation section {
+  @apply relative;
+}
+
+.quotation section .background {
+  @apply absolute w-full h-full bg-white top-0 left-0 opacity-80;
+  z-index: -1;
+}
+
+.quotation section article {
+  @apply p-5;
+  z-index: 99;
+}
+
+.quotation section article header {
+  @apply
+    flex flex-col
+    sm:flex-row sm:justify-between sm:mt-4;
+}
+
+.quotation section article header .profile {
+  @apply flex flex-grow sm:flex-grow-0;
+}
+
+.quotation section article header .profile img {
+  @apply w-32 h-32;
+}
+
+.quotation section article header .profile .profileInfo {
+  @apply ml-5;
+}
+
+.quotation section article header .profile .profileInfo strong {
+  @apply text-gray-600 text-lg;
+}
+
+.quotation section article header .profile .profileInfo p {
+  @apply text-gray-500 mt-1;
+}
+
+.quotation section article header .profile .profileInfo p span {
+  @apply text-sm ml-2;
+}
+
+.quotation section article header .quotationNumber {
+  @apply
+    flex-grow flex flex-col items-center
+    mt-10 sm:mt-0;
+}
+
+.quotation section article header .quotationNumber strong {
+  @apply font-medium text-lg text-gray-800;
+}
+
+.quotation section article header .quotationNumber div {
+  @apply py-2 px-10 mt-1 bg-gray-400 rounded-md border-green-600 border-2;
+}
+
+.quotation section article header .quotationNumber div p {
+  @apply text-2xl text-gray-900 text-center;
+}
+
+.quotation section article header .dates {
+  @apply
+    mt-6
+    sm:mt-0 sm:flex sm:justify-between sm:mr-2;
+}
+
+.quotation section article header .dates > div {
+  @apply
+    flex flex-col items-center flex-grow;
+}
+
+.quotation section article header .dates > div + div {
+  @apply mt-4 sm:mt-0 sm:ml-10;
+}
+
+.quotation section article header .dates > div > p {
+  @apply text-xs mb-1;
+}
+
+.quotation section article header .dates > div div {
+  @apply flex items-center;
+}
+
+.quotation section article header .dates > div div p {
+  @apply ml-3 text-sm;
+}
+
+.quotation section article header .dates > div .opening p {
+  @apply text-green-600;
+}
+
+.quotation section article header .dates > div .closing p {
+  @apply text-red-600;
+}
+
+.quotation section article .quotes {
+  @apply flex-grow mt-10;
+}
+
+.quotation section article .quotes table {
+  @apply w-full bg-white;
+}
+
+.quotation section article .quotes table thead {
+  @apply
+    hidden sm:table-header-group
+    bg-green-500 border-green-500 border;
+}
+
+.quotation section article .quotes table thead tr th {
+  @apply p-2 text-white;
+}
+
+.quotation section article .quotes table tbody tr {
+  @apply
+    flex flex-col
+    sm:table-row sm:border sm:border-gray-500 border-collapse;
+}
+
+.quotation section article .quotes table tbody tr + tr {
+  @apply mt-5 sm:mt-0;
+}
+
+.quotation section article .quotes table tbody tr td {
+  @apply
+    flex justify-between m-0 p-0
+    sm:table-cell sm:border sm:border-gray-500
+    sm:p-2 border-collapse;
+}
+
+.quotation section article .quotes table tbody tr td:first-child div {
+  @apply border-t border-b;
+}
+
+.quotation section article .quotes table tbody tr td:last-child div {
+  @apply border-b;
+}
+
+.quotation section article .quotes table tbody tr td div {
+  width: 60%;
+  @apply
+    border-b border-r border-gray-500 p-2
+    flex justify-end items-center text-right
+    sm:block sm:border-none sm:w-full sm:p-0 sm:text-left;
+}
+
+.quotation section article .quotes table tbody tr td::before {
+  content: attr(data-label);
+  width: 40%;
+  @apply bg-green-500 text-white text-left p-2 flex items-center;
+}
+
+@screen sm {
+  .quotation section article .quotes table tbody tr td::before {
+    content: none;
+    @apply p-0 bg-transparent w-0;
+  }
+}
+
+.quotation section article .quotes table tbody tr td .inputContainer {
+  @apply
+    flex justify-center border-collapse p-1
+    sm:p-0;
+}
+
+.quotation section article .quotes table tbody tr td input {
+  @apply
+    w-10/12 border-gray-500 border outline-none rounded-md
+    text-gray-800 p-1;
+}
+
+.quotation section article .quotes .pagination {
+  @apply flex justify-between items-center mt-6;
+}
+
+.quotation section article .quotes .pagination button {
+  @apply bg-gray-400 border-gray-900 border rounded-md p-2
+    flex justify-around items-center;
+}
+
+.quotation section article .quotes .pagination button span {
+  @apply text-gray-900 text-sm;
+}
+
+.quotation section article .quotes .pagination button i {
+  @apply mx-2 text-lg;
+}
+
+.quotation section article .quotes .btn_group {
+  @apply mt-6 flex justify-center items-center;
+}
+
+.quotation section article .quotes .btn_group button {
+  @apply bg-green-500 rounded-md py-2 px-5 text-white text-lg;
+}
+
+.quotation section article .quotes .btn_group button:hover {
+  background: green;
+  box-shadow: 0px 4px 12px green;
 }
 
 /* Fim "Tela de cotação" */

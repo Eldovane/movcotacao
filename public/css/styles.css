@@ -1,4 +1,4 @@
-/*! tailwindcss v2.1.3 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v2.1.4 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -555,27 +555,31 @@ video {
 
 * {
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
   background-position: center;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  background-image: url('/svg/background_lines.svg');
+}
+
+.appContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   padding: 0.25rem;
-  width: 100vw;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
-  body {
+  .appContainer {
     padding: 0px;
   }
-}
-
-body {
-  background-image: url('/svg/background_lines.svg');
 }
 
 /* Fim 'todos' */
@@ -627,7 +631,7 @@ body {
 
 @media (min-width: 640px) {
   .loginContainer {
-    width: 33.333333%;
+    width: 24rem;
   }
 }
 
@@ -759,24 +763,22 @@ body {
 /* Tela de cotação */
 
 .quotation {
-  --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-  border-radius: 0.375rem;
-  position: relative;
   width: 100%;
 }
 
 @media (min-width: 640px) {
   .quotation {
+    border-radius: 0.375rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
     width: 91.666667%;
   }
 }
 
-.quotation header {
+.quotation > header {
   --tw-bg-opacity: 1;
   background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
-  border-top-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -790,12 +792,14 @@ body {
 }
 
 @media (min-width: 640px) {
-  .quotation header {
+  .quotation > header {
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
     flex-direction: row;
   }
 }
 
-.quotation header h1 {
+.quotation > header h1 {
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -803,12 +807,12 @@ body {
 }
 
 @media (min-width: 640px) {
-  .quotation header h1 {
+  .quotation > header h1 {
     margin-bottom: 0px;
   }
 }
 
-.quotation header div {
+.quotation > header div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -817,13 +821,13 @@ body {
 }
 
 @media (min-width: 640px) {
-  .quotation header div {
+  .quotation > header div {
     flex-direction: row;
     width: auto;
   }
 }
 
-.quotation header div form {
+.quotation > header div form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -831,12 +835,12 @@ body {
 }
 
 @media (min-width: 640px) {
-  .quotation header div form {
+  .quotation > header div form {
     width: auto;
   }
 }
 
-.quotation header div form input {
+.quotation > header div form input {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   flex-grow: 1;
@@ -846,27 +850,27 @@ body {
   padding: 0.5rem;
 }
 
-.quotation header div form input::-moz-placeholder {
+.quotation > header div form input::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(0, 0, 0, var(--tw-placeholder-opacity));
 }
 
-.quotation header div form input:-ms-input-placeholder {
+.quotation > header div form input:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(0, 0, 0, var(--tw-placeholder-opacity));
 }
 
-.quotation header div form input::placeholder {
+.quotation > header div form input::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(0, 0, 0, var(--tw-placeholder-opacity));
 }
 
-.quotation header div form input {
+.quotation > header div form input {
   --tw-text-opacity: 1;
   color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
 
-.quotation header div form button {
+.quotation > header div form button {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   opacity: 0.5;
@@ -878,33 +882,423 @@ body {
   color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 
-.quotation header div nav {
+.quotation > header div nav {
   display: none;
   margin-left: 3.5rem;
 }
 
 @media (min-width: 640px) {
-  .quotation header div nav {
+  .quotation > header div nav {
     display: block;
   }
 }
 
-.quotation header div nav ul {
+.quotation > header div nav ul {
   display: flex;
   justify-content: space-around;
 }
 
-.quotation header div nav ul li {
+.quotation > header div nav ul li {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
 
-.quotation header div nav ul li + li {
+.quotation > header div nav ul li + li {
   margin-left: 2.5rem;
 }
 
-.quotation header div nav ul li a:hover {
+.quotation > header div nav ul li a:hover {
   text-decoration: underline;
+}
+
+.quotation section {
+  position: relative;
+}
+
+.quotation section .background {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  height: 100%;
+  opacity: 0.8;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: -1;
+}
+
+.quotation section article {
+  padding: 1.25rem;
+  z-index: 99;
+}
+
+.quotation section article header {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .quotation section article header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+}
+
+.quotation section article header .profile {
+  display: flex;
+  flex-grow: 1;
+}
+
+@media (min-width: 640px) {
+  .quotation section article header .profile {
+    flex-grow: 0;
+  }
+}
+
+.quotation section article header .profile img {
+  height: 8rem;
+  width: 8rem;
+}
+
+.quotation section article header .profile .profileInfo {
+  margin-left: 1.25rem;
+}
+
+.quotation section article header .profile .profileInfo strong {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--tw-text-opacity));
+}
+
+.quotation section article header .profile .profileInfo p {
+  margin-top: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
+.quotation section article header .profile .profileInfo p span {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.quotation section article header .quotationNumber {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .quotation section article header .quotationNumber {
+    margin-top: 0px;
+  }
+}
+
+.quotation section article header .quotationNumber strong {
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+}
+
+.quotation section article header .quotationNumber div {
+  --tw-bg-opacity: 1;
+  background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgba(5, 150, 105, var(--tw-border-opacity));
+  border-radius: 0.375rem;
+  border-width: 2px;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.quotation section article header .quotationNumber div p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.quotation section article header .dates {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .quotation section article header .dates {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-right: 0.5rem;
+  }
+}
+
+.quotation section article header .dates > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.quotation section article header .dates > div + div {
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .quotation section article header .dates > div + div {
+    margin-top: 0px;
+    margin-left: 2.5rem;
+  }
+}
+
+.quotation section article header .dates > div > p {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.quotation section article header .dates > div div {
+  display: flex;
+  align-items: center;
+}
+
+.quotation section article header .dates > div div p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-left: 0.75rem;
+}
+
+.quotation section article header .dates > div .opening p {
+  --tw-text-opacity: 1;
+  color: rgba(5, 150, 105, var(--tw-text-opacity));
+}
+
+.quotation section article header .dates > div .closing p {
+  --tw-text-opacity: 1;
+  color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+
+.quotation section article .quotes {
+  flex-grow: 1;
+  margin-top: 2.5rem;
+}
+
+.quotation section article .quotes table {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  width: 100%;
+}
+
+.quotation section article .quotes table thead {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgba(16, 185, 129, var(--tw-border-opacity));
+  border-width: 1px;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table thead {
+    display: table-header-group;
+  }
+}
+
+.quotation section article .quotes table thead tr th {
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.quotation section article .quotes table tbody tr {
+  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr {
+    --tw-border-opacity: 1;
+    border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+    border-width: 1px;
+    display: table-row;
+  }
+}
+
+.quotation section article .quotes table tbody tr + tr {
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr + tr {
+    margin-top: 0px;
+  }
+}
+
+.quotation section article .quotes table tbody tr td {
+  border-collapse: collapse;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr td {
+    --tw-border-opacity: 1;
+    border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+    border-width: 1px;
+    display: table-cell;
+    padding: 0.5rem;
+  }
+}
+
+.quotation section article .quotes table tbody tr td:first-child div {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.quotation section article .quotes table tbody tr td:last-child div {
+  border-bottom-width: 1px;
+}
+
+.quotation section article .quotes table tbody tr td div {
+  width: 60%;
+  --tw-border-opacity: 1;
+  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  text-align: right;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr td div {
+    border-style: none;
+    display: block;
+    padding: 0px;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.quotation section article .quotes table tbody tr td::before {
+  content: attr(data-label);
+  width: 40%;
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  text-align: left;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr td::before {
+    content: none;
+    background-color: transparent;
+    padding: 0px;
+    width: 0px;
+  }
+}
+
+.quotation section article .quotes table tbody tr td .inputContainer {
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .quotation section article .quotes table tbody tr td .inputContainer {
+    padding: 0px;
+  }
+}
+
+.quotation section article .quotes table tbody tr td input {
+  --tw-border-opacity: 1;
+  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+  border-radius: 0.375rem;
+  border-width: 1px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  padding: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+  width: 83.333333%;
+}
+
+.quotation section article .quotes .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.quotation section article .quotes .pagination button {
+  --tw-bg-opacity: 1;
+  background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgba(17, 24, 39, var(--tw-border-opacity));
+  border-radius: 0.375rem;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+
+.quotation section article .quotes .pagination button span {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.quotation section article .quotes .pagination button i {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.quotation section article .quotes .btn_group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.quotation section article .quotes .btn_group button {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  border-radius: 0.375rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.quotation section article .quotes .btn_group button:hover {
+  background: green;
+  box-shadow: 0px 4px 12px green;
 }
 
 /* Fim "Tela de cotação" */

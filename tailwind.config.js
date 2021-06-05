@@ -1,6 +1,8 @@
+const path = require('path');
+
 module.exports = {
   purge: [
-    './src/assets/css/*.css'
+    path.resolve('src', 'assets', 'css', '*.css'),
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

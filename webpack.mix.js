@@ -1,3 +1,4 @@
+const path = require('path');
 const mix = require('webpack-mix');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
@@ -9,7 +10,7 @@ mix
       new LiveReloadPlugin(),
     ]
   })
-  .postCss('src/assets/css/tailwind.css', 'public/css/styles.css', [
+  .postCss(path.resolve('src', 'assets', 'css', 'tailwind.css'), path.resolve('public', 'css', 'styles.css'), [
     tailwindcss,
     autoprefixer,
   ]);

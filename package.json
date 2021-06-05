@@ -6,8 +6,8 @@
   "author": "Pedro Henrique Ribeiro Moreira <p3drohenrique.moreira@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "postcss:watch": "postcss ./src/assets/css/tailwind.css -o ./public/css/styles.css --watch",
-    "watch": "node_modules/webpack/bin/webpack.js --watch --production --progress --hide-modules --config=node_modules/webpack-mix/setup/webpack.config.js"
+    "watch:linux": "node_modules/webpack/bin/webpack.js --watch --production --progress --hide-modules --config=node_modules/webpack-mix/setup/webpack.config.js",
+    "watch": "node node_modules\\webpack\\bin\\webpack.js --watch --production --progress --hide-modules --config=node_modules\\webpack-mix\\setup\\webpack.config.js"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.3",

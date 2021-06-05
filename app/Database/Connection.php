@@ -6,12 +6,16 @@
 
   class Connection {
     public static function getConnection() {
+      $databaseConfig = require __DIR__ . '/../../src/config/database.php';
+
+      $connectionProperties = $databaseConfig['testing'];
+
       $connection = new mysqli(
-        $_ENV['DATABASE_HOST'],
-        $_ENV['DATABASE_USER'],
-        $_ENV['DATABASE_PASSWORD'],
-        $_ENV['DATABASE_NAME'],
-        $_ENV['DATABASE_PORT']
+        $connectionProperties['host'],
+        $connectionProperties['user'],
+        $connectionProperties['pass'],
+        $connectionProperties['name'],
+        $connectionProperties['port']
       );
 
       if ($connection->connect_error) {

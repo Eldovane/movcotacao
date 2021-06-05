@@ -23,7 +23,6 @@ final class QuotesMigration extends AbstractMigration
         ->addColumn('data_fechamento', 'datetime')
         ->addColumn('status', 'enum', ['values' => ['Aberta', 'Fechada']])
         ->addColumn('data_validade', 'datetime')
-        ->addTimestamps()
         ->save();
     }
 

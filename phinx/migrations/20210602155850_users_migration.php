@@ -20,7 +20,6 @@ final class UsersMigration extends AbstractMigration
         ->addColumn('empresa_id', 'integer')
         ->addColumn('codigo_recuperar_senha', 'string', ['limit' => 6, 'null' => true])
         ->addColumn('token_recuperar_senha', 'string', ['limit' => 50, 'null' => true])
-        ->addTimestamps()
         ->save();
     }
 

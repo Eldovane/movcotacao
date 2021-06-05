@@ -15,7 +15,6 @@ final class CompanyMigration extends AbstractMigration
         ->addColumn('telefone', 'string', ['limit' => 30])
         ->addColumn('whatsapp', 'string', ['limit' => 15])
         ->addColumn('email', 'string', ['limit' => 50])
-        ->addTimestamps()
         ->save();
     }
 

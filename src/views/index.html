@@ -19,17 +19,19 @@
 
         <strong>Login</strong>
 
-        <form>
+        <form id="signIn">
           <input
             type="text"
             name="user"
             placeholder="Usuário, Email ou CPF/CNPJ"
+            required
           />
 
           <input
             type="password"
-            name="user"
+            name="password"
             placeholder="Senha"
+            required
           />
 
           <button
@@ -37,6 +39,8 @@
           >
             Entrar
           </button>
+
+          <p class="errorMessage"></p>
         </form>
 
         <p>
@@ -46,22 +50,46 @@
     </div>
 
     <script>
-      async function teste() {
-        const response = await fetch('http://localhost:8080/api');
+      async function signIn(user, password) {
+        const errorMessage = document.querySelector('p.errorMessage');
+        errorMessage.style.display = 'none';
+
+        const url = window.location.origin;
+
+        const body = {
+          user,
+          password
+        };
+
+        const response = await fetch('http://localhost:8080/api/users/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+
         const data = await response.json();
 
-        console.log({ data });
+        if (response.status !== 200) {
+          errorMessage.innerText = data.message;
+          errorMessage.style.display = 'block';
+          return;
+        }
+
+        localStorage.setItem('@movcotacao:token', data);
+        window.location.href = '/cotacao';
       }
 
-      document.querySelector('form').addEventListener('submit', event => {
+      document.getElementById('signIn').addEventListener('submit', event => {
         event.preventDefault();
 
-        console.log('Submit form');
+        const form = document.forms['signIn'];
+        const user = form['user'].value;
+        const password = form['password'].value;
 
-        window.location.href = '/cotacao';
-      })
-
-      teste();
+        signIn(user, password);
+      });
     </script>
   </body>
 </html>

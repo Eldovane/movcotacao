@@ -36,7 +36,7 @@
 
   // Carrengando as dependências do projeto
   $containerConfig = require __DIR__ . '/../src/config/container.php';
-  $containerConfig($container);
+  $containerConfig($app, $container);
 
   // Carregandos routes (Rotas da aplicação)
   $webRoutes = require __DIR__ . '/../src/routes/web.php';

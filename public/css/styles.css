@@ -745,7 +745,17 @@ body {
   width: 6rem;
 }
 
-.loginContainer p {
+.loginContainer form > p {
+  display: none;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin: 0px;
+  margin-top: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+
+.loginContainer > p {
   font-size: 1rem;
   line-height: 1.5rem;
   margin-top: 1rem;
@@ -1147,6 +1157,8 @@ body {
   border-collapse: collapse;
   display: flex;
   justify-content: space-between;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   margin: 0px;
   padding: 0px;
 }
@@ -1243,6 +1255,7 @@ body {
 
 .quotation section article .quotes .pagination {
   display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   margin-top: 1.5rem;
@@ -1296,9 +1309,14 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.quotation section article .quotes .btn_group button + button {
+  margin-left: 1rem;
+}
+
 .quotation section article .quotes .btn_group button:hover {
-  background: green;
-  box-shadow: 0px 4px 12px green;
+  box-shadow: 0px 4px 12px rgba(4, 120, 87);
+  --tw-bg-opacity: 1;
+  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
 }
 
 /* Fim "Tela de cotação" */

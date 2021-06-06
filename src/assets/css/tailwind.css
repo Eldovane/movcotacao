@@ -50,7 +50,11 @@ body {
   @apply rounded-md bg-green-500 text-white p-2 mt-5 w-24 hover:bg-green-600 font-bold;
 }
 
-.loginContainer p {
+.loginContainer form > p {
+  @apply text-red-600 text-lg m-0 mt-4 hidden;
+}
+
+.loginContainer > p {
   @apply text-base text-center my-4;
 }
 
@@ -244,7 +248,7 @@ body {
 
 .quotation section article .quotes table tbody tr td {
   @apply
-    flex justify-between m-0 p-0
+    flex justify-between m-0 p-0 text-sm
     sm:table-cell sm:border sm:border-gray-500
     sm:p-2 border-collapse;
 }
@@ -291,7 +295,7 @@ body {
 }
 
 .quotation section article .quotes .pagination {
-  @apply flex justify-between items-center mt-6;
+  @apply flex justify-between items-center mt-6 hidden;
 }
 
 .quotation section article .quotes .pagination button {
@@ -315,9 +319,13 @@ body {
   @apply bg-green-500 rounded-md py-2 px-5 text-white text-lg;
 }
 
+.quotation section article .quotes .btn_group button + button {
+  @apply ml-4;
+}
+
 .quotation section article .quotes .btn_group button:hover {
-  background: green;
-  box-shadow: 0px 4px 12px green;
+  box-shadow: 0px 4px 12px rgba(4, 120, 87);
+  @apply bg-green-700;
 }
 
 /* Fim "Tela de cotação" */

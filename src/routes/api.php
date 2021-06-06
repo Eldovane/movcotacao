@@ -8,15 +8,16 @@
    * Não são para views, páginas da aplicação.
    */
   return function (App $app) {
-    // Middlewares da API
-    // $ensureAuthenticateMiddleware = require __DIR__ . '/../middlewares/ensureAuthenticated.php';
-    $ensureHaveAccess = require __DIR__ . '/../middlewares/ensureHaveAccess.php';
+    $app->group('/api', function (RouteGroup $group) {
+      // Middlewares da API
+      $ensureHaveAccess = require __DIR__ . '/../middlewares/ensureHaveAccess.php';
 
-    $app->group('/users', function (RouteGroup $group) use($ensureHaveAccess) {
+      $group->group('/users', function (RouteGroup $group) use($ensureHaveAccess) {
 
-      $group->post('', 'UserController:create')->add($ensureHaveAccess);
+        $group->post('', 'Api\UserController:create')->add($ensureHaveAccess);
 
-      $group->post('/authenticate', 'AuthenticateUserController:create');
+        $group->post('/authenticate', 'Api\AuthenticateUserController:create');
+      });
     });
   }
 

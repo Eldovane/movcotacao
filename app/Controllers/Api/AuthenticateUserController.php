@@ -1,5 +1,5 @@
 <?php
-  namespace App\Controllers;
+  namespace App\Controllers\Api;
   use DI\Container;
   use Psr\Http\Message\ServerRequestInterface as Request;
   use Psr\Http\Message\ResponseInterface as Response;
@@ -21,7 +21,7 @@
 
       $token = $authenticateUser->execute($body['user'], $body['password']);
 
-      $response->getBody()->write(json_encode($token));
+      setcookie('@movcotacao:token', $token, time() + (86400 * 30), '/');
 
       return $response;
     }

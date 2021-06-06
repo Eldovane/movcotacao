@@ -18,7 +18,8 @@
       string $password,
       string $user,
       string $document,
-      string $type
+      string $type,
+      string $companyId
     ) {
       $connection = Connection::getConnection();
 
@@ -66,7 +67,7 @@
       if (
         $type !== 'Fornecedor' &&
         $type !== 'Comprador' &&
-        $type === 'Fornecedor/Comprador'
+        $type !== 'Fornecedor/Comprador'
       ) {
         throw new Exception(
           'Tipo de usuário deve ser "Fornecedor", "Comprador" ou "Fornecedor/Comprador"',
@@ -78,14 +79,15 @@
 
 
       $insertUserQuery = "
-        INSERT INTO usuarios (nome, email, usuario, senha, documento, tipo)
+        INSERT INTO usuarios (nome, email, usuario, senha, documento, tipo, empresa_id)
           VALUES (
             '{$name}',
             '{$email}',
             '{$user}',
             '{$hashedPassword}',
             '{$document}',
-            '{$type}'
+            '{$type}',
+            '{$companyId}'
           )
         ";
 
@@ -97,6 +99,8 @@
           500
         );
       }
+
+      $connection->close();
 
       return $result;
     }

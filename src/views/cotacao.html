@@ -31,6 +31,9 @@
               <li>
                 <a href="#">Ajuda</a>
               </li>
+              <li>
+                <a href="/logout">Sair</a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -45,17 +48,26 @@
               <img src="/img/noprofile.jpg" alt="No Profile" />
 
               <div class="profileInfo">
-                <strong>Empresa X</strong>
-                <p><i class="fas fa-phone-alt"></i> <span>(33) 3333-3333</span></p>
-                <p><i class="fab fa-whatsapp"></i> <span>(44) 44444-4444</span></p>
-                <p><i class="far fa-envelope"></i> <span>empresax@email.com</span></p>
+                <strong>{{ company['nome_fantasia'] }}</strong>
+                <p>
+                  <i class="fas fa-phone-alt"></i>
+                  <span>{{ company['telefone'] }}</span>
+                </p>
+                <p>
+                  <i class="fab fa-whatsapp"></i>
+                  <span>{{ company['whatsapp'] }}</span>
+                </p>
+                <p>
+                  <i class="far fa-envelope"></i>
+                  <span>{{ company['email'] }}</span>
+                </p>
               </div>
             </div>
 
             <div class="quotationNumber">
               <strong>COTAÇÃO - N°</strong>
               <div>
-                <p>001</p>
+                <p>{{ listQuotesOpening[0]['numero_cotacao'] }}</p>
               </div>
             </div>
 
@@ -64,7 +76,7 @@
                 <p>Data de Abertura</p>
                 <div class="opening">
                   <img src="/svg/calenderGreen.svg" alt="Calendario icone" />
-                  <p>07/06/2021</p>
+                  <p>{{ listQuotesOpening[0]['data_abertura'] }}</p>
                 </div>
               </div>
 
@@ -72,7 +84,7 @@
                 <p>Data de Fechamento</p>
                 <div class="closing">
                   <img src="/svg/calenderRed.svg" alt="Calendario icone" />
-                  <p>07/06/2021</p>
+                  <p>{{ listQuotesOpening[0]['data_validade'] }}</p>
                 </div>
               </div>
             </div>
@@ -82,8 +94,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>Cód. Produto</th>
                   <th>Cód. SKU</th>
+                  <th>Cód. Produto</th>
                   <th>Cód. Referência</th>
                   <th>Desc. Produto</th>
                   <th>Qtd. a Comparar</th>
@@ -93,61 +105,35 @@
               </thead>
 
               <tbody>
-                <tr>
-                  <td data-label="Cód. Produto">
-                    <div>4343</div>
-                  </td>
-                  <td data-label="Cód. SKU">
-                    <div>98fh932</div>
-                  </td>
-                  <td data-label="Cód. Referência">
-                    <div>921ui3j</div>
-                  </td>
-                  <td data-label="Desc. Produto">
-                    <div>Descrição</div>
-                  </td>
-                  <td data-label="Qtd. a Comparar">
-                    <div>12</div>
-                  </td>
-                  <td data-label="Oferta (R$)">
-                    <div class="inputContainer">
-                      <input type="text" placeholder="0,00" />
-                    </div>
-                  </td>
-                  <td data-label="Observação">
-                    <div class="inputContainer">
-                      <input type="text" placeholder="Texto de observação" />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td data-label="Cód. Produto">
-                    <div>1212</div>
-                  </td>
-                  <td data-label="Cód. SKU">
-                    <div>98432hf</div>
-                  </td>
-                  <td data-label="Cód. Referência">
-                    <div>i32ye98</div>
-                  </td>
-                  <td data-label="Desc. Produto">
-                    <div>Descrição</div>
-                  </td>
-                  <td data-label="Qtd. a Comparar">
-                    <div>4</div>
-                  </td>
-                  <td data-label="Oferta (R$)">
-                    <div class="inputContainer">
-                      <input type="text" placeholder="0,00" />
-                    </div>
-                  </td>
-                  <td data-label="Observação">
-                    <div class="inputContainer">
-                      <input type="text" placeholder="Texto de observação" />
-                    </div>
-                  </td>
-                </tr>
+                {% for quote in listQuotesOpening %}
+                  <tr>
+                    <td data-label="Cód. SKU">
+                      <div>{{quote['id_sku']}}</div>
+                    </td>
+                    <td data-label="Cód. Produto">
+                      <div>{{quote['id_produto']}}</div>
+                    </td>
+                    <td data-label="Cód. Referência">
+                      <div>{{quote['id_referencia']}}</div>
+                    </td>
+                    <td data-label="Desc. Produto">
+                      <div>{{quote['descricao_produto']}}</div>
+                    </td>
+                    <td data-label="Qtd. a Comparar">
+                      <div>{{quote['quantidade_produto']}}</div>
+                    </td>
+                    <td data-label="Oferta (R$)">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="0,00" />
+                      </div>
+                    </td>
+                    <td data-label="Observação">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Texto de observação" />
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
               </tbody>
             </table>
 

@@ -33,6 +33,8 @@ class AuthenticateUserService {
 
     $findUser = $result->fetch_assoc();
 
+    $connection->close();
+
     if (!$findUser) {
       throw new Exception('Usuário ou senha incorretos.', 400);
     }
@@ -45,6 +47,7 @@ class AuthenticateUserService {
 
     $payload = [
       'user' => $findUser['id'],
+      'company' => $findUser['empresa_id']
     ];
 
     $token = JWT::encode($payload, $_ENV['JWT_KEY']);

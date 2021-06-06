@@ -10,9 +10,9 @@ use Psr\Http\Message\ResponseInterface as Response;
  * Não são webservices (API)
  */
 return function (App $app) {
-  $app->get('/', function (Request $resquest, Response $response) {
-    return $this->get('view')->render($response, 'index.html', ['name' => 'John Doe']);
-  });
+  $app->get('/', 'HomeController:show');
+
+  $app->get('/logout', 'AuthController:delete');
 
   $app->get('/home', function(Request $request, Response $response) {
     return $this
@@ -27,9 +27,7 @@ return function (App $app) {
       );
   });
 
-  $app->get('/cotacao', function (Request $request, Response $response) {
-    return $this->get('view')->render($response, 'cotacao.html');
-  });
+  $app->get('/cotacao', 'QuotesController:index');
 }
 
 ?>

@@ -9,19 +9,28 @@ final class QuotesMigration extends AbstractMigration
     {
       $table = $this->table('movcotacao');
       $table
-        ->addColumn('comprador', 'integer') // Id empresa compradora.
-        ->addColumn('fornecedor', 'integer') // Id empresa fornecedora.
-        ->addColumn('numero_cotacao', 'integer') // Número da cotação.
-        ->addColumn('id_produto', 'string', ['limit' => 15]) // Código do produto de acordo com a cotação.
-        ->addColumn('id_sku', 'string', ['limit' => 50]) // Referência para saber quais produtos são similares / desenho.
-        ->addColumn('id_referencia', 'string', ['limit' => 50]) // Referência do produto no fabricante.
+        // Id empresa compradora.
+        ->addColumn('comprador', 'integer')
+        // Id empresa fornecedora.
+        ->addColumn('fornecedor', 'integer')
+        // Número da cotação.
+        ->addColumn('numero_cotacao', 'integer')
+        // Código do produto de acordo com a cotação.
+        ->addColumn('id_produto', 'string', ['limit' => 15])
+        // Referência para saber quais produtos são similares / desenho.
+        ->addColumn('id_sku', 'string', ['limit' => 50])
+        // Referência do produto no fabricante.
+        ->addColumn('id_referencia', 'string', ['limit' => 50])
         ->addColumn('descricao_produto', 'string', ['limit' => 150])
         ->addColumn('quantidade_produto', 'float')
-        ->addColumn('valor_ofertado', 'float')
-        ->addColumn('observacao', 'string', ['limit' => 250])
+        ->addColumn('valor_ofertado', 'float', ['null' => true])
+        ->addColumn('observacao', 'string', ['limit' => 250, 'null' => true])
         ->addColumn('data_abertura', 'datetime')
-        ->addColumn('data_fechamento', 'datetime')
-        ->addColumn('status', 'enum', ['values' => ['Aberta', 'Fechada']])
+        ->addColumn('data_fechamento', 'datetime', ['null' => true])
+        ->addColumn(
+          'status', 'enum',
+          ['values' => ['Aberta', 'Fechada'], 'default' => "'Aberta'"]
+        )
         ->addColumn('data_validade', 'datetime')
         ->save();
     }

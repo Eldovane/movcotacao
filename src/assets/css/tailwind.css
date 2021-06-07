@@ -147,6 +147,10 @@ body {
   @apply bg-green-500 p-4 rounded-md text-white;
 }
 
+.quotation section article .list a + a {
+  @apply mt-2;
+}
+
 .quotation section article header {
   @apply
     flex flex-col

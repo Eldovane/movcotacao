@@ -966,6 +966,10 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.quotation section article .list a + a {
+  margin-top: 0.5rem;
+}
+
 .quotation section article header {
   display: flex;
   flex-direction: column;

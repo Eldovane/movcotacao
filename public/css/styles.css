@@ -942,6 +942,14 @@ body {
   z-index: 99;
 }
 
+.quotation section article h2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity));
+}
+
 .quotation section article .list {
   display: flex;
   flex-direction: column;

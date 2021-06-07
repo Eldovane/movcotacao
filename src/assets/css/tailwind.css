@@ -135,6 +135,10 @@ body {
   z-index: 99;
 }
 
+.quotation section article h2 {
+  @apply text-xl text-gray-800 font-bold;
+}
+
 .quotation section article .list {
   @apply w-full flex flex-col mt-2;
 }

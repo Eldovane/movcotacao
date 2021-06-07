@@ -31,7 +31,7 @@
   $handleException = require __DIR__ . '/../src/middlewares/handleException.php';
 
   // Adicionando middleware para erros na aplicação
-  $errorMiddleware = $app->addErrorMiddleware(true, false, false);
+  $errorMiddleware = $app->addErrorMiddleware(true, true, true);
   $errorMiddleware->setDefaultErrorHandler($handleException);
 
   // Carrengando as dependências do projeto

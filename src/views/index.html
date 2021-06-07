@@ -56,12 +56,14 @@
 
         const url = window.location.origin;
 
+        console.log(url)
+
         const body = {
           user,
           password
         };
 
-        const response = await fetch('https://movcotacao.herokuapp.com/api/users/authenticate', {
+        const response = await fetch(`${url}/api/users/authenticate`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -70,6 +72,8 @@
         });
 
         if (response.status !== 200) {
+          const data = await response.json();
+
           errorMessage.innerText = data.message;
           errorMessage.style.display = 'block';
           return;

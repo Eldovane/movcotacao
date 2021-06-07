@@ -11,9 +11,31 @@
     <link rel="stylesheet" href="/css/styles.css"/>
   </head>
   <body>
+    <nav class="mobileMenu">
+      <button id="closeMenu" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <ul>
+        <li>
+          <a href="#">Contato</a>
+        </li>
+        <li>
+          <a href="#">Ajuda</a>
+        </li>
+        <li>
+          <a href="/logout">Sair</a>
+        </li>
+      </ul>
+    </nav>
+
     <section class="quotation">
       <header>
         <h1>Cotação Online</h1>
+
+        <button id="openMenu" class="menuBars" type="button">
+          <i class="fas fa-bars"></i>
+        </button>
 
         <div>
           <form id="search">
@@ -62,5 +84,15 @@
       src="https://kit.fontawesome.com/c1f9e19d38.js"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      document.getElementById('openMenu').addEventListener('click', () => {
+        document.querySelector('.mobileMenu').style.display = 'flex';
+      });
+
+      document.getElementById('closeMenu').addEventListener('click', () => {
+        document.querySelector('.mobileMenu').style.display = 'none';
+      });
+    </script>
   </body>
 </html>

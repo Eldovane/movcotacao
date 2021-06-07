@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply w-full h-screen bg-center box-border;
+  @apply w-full h-screen bg-center box-border relative;
   background-image: url('/svg/background_lines.svg');
 }
 
@@ -66,6 +66,28 @@ body {
 
 /* Tela de cotação */
 
+.mobileMenu {
+  @apply
+    hidden
+    absolute top-0 left-0
+    w-full h-full
+    flex flex-col items-center
+    pt-14;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 199;
+}
+
+.mobileMenu button {
+  @apply
+    absolute top-4 right-4
+    text-3xl text-white;
+}
+
+.mobileMenu ul li {
+  @apply
+    text-white text-2xl font-bold py-3 px-2;
+}
+
 .quotation {
   @apply
     w-full sm:w-11/12
@@ -75,7 +97,7 @@ body {
 .quotation > header {
   @apply
     bg-green-700 text-white
-    py-5 px-10
+    py-5 px-10 relative
     flex flex-col justify-between items-center
     sm:rounded-t-md
     sm:flex-row;
@@ -83,6 +105,12 @@ body {
 
 .quotation > header h1 {
   @apply text-2xl mb-4 sm:mb-0 font-bold;
+}
+
+.quotation > header .menuBars {
+  @apply
+    absolute top-5 right-6 text-2xl outline-none
+    sm:hidden;
 }
 
 .quotation > header div {

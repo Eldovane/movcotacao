@@ -13,10 +13,10 @@ class AuthenticateUserService {
     $this->hashProvider = $hashProvider;
   }
 
-  public function execute(string $user, string $password): string {
+  public function execute(string $user, string $password) {
     $connection = Connection::getConnection();
 
-    $searchUserQuery = "SELECT id, senha FROM usuarios WHERE ";
+    $searchUserQuery = "SELECT id, senha, empresa_id FROM usuarios WHERE ";
 
     if (filter_var($user, FILTER_VALIDATE_EMAIL)) {
       $searchUserQuery .= "email = '{$user}'";

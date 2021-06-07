@@ -135,6 +135,14 @@ body {
   z-index: 99;
 }
 
+.quotation section article .list {
+  @apply w-full flex flex-col mt-2;
+}
+
+.quotation section article .list a {
+  @apply bg-green-500 p-4 rounded-md text-white;
+}
+
 .quotation section article header {
   @apply
     flex flex-col

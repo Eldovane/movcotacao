@@ -5,6 +5,7 @@
   use Psr\Http\Message\ResponseInterface as Response;
   use Firebase\JWT\JWT;
   use App\Services\ListQuotesOpeningService;
+  use App\Services\GetOpenQuoteDataService;
 
   class QuotesController {
     private $container;
@@ -13,12 +14,53 @@
       $this->container = $container;
     }
 
-    public function index(Request $request, Response $response): Response {
+    public function index(Request $request, Response $response, $parameters): Response
+    {
+      if(!isset($_COOKIE['@movcotacao:token'])) {
+        $settings = $this->container->get('settings');
+        return $response->withHeader('Location', $settings['app_url'] . '/');
+      }
+
+      $userAuthenticatedToken = $_COOKIE['@movcotacao:token'];
+
+      $userAuthenticated = JWT::decode(
+        $userAuthenticatedToken,
+        $_ENV['JWT_KEY'],
+        ['HS256']
+      );
+
       $listQuotesOpening = new ListQuotesOpeningService();
 
       $result = $listQuotesOpening->execute(
-        1,
-        2
+        $userAuthenticated->company
+      );
+
+      return $this
+        ->container
+          ->get('view')
+          ->render($response, 'lista.html', [ 'listQuotesOpening' => $result ]);
+    }
+
+    public function show(Request $request, Response $response, $parameters): Response
+    {
+      if(!isset($_COOKIE['@movcotacao:token'])) {
+        $settings = $this->container->get('settings');
+        return $response->withHeader('Location', $settings['app_url'] . '/');
+      }
+
+      $userAuthenticatedToken = $_COOKIE['@movcotacao:token'];
+
+      $userAuthenticated = JWT::decode(
+        $userAuthenticatedToken,
+        $_ENV['JWT_KEY'],
+        ['HS256']
+      );
+
+      $getOpenQuoteData = new GetOpenQuoteDataService();
+
+      $result = $getOpenQuoteData->execute(
+        $userAuthenticated->company,
+        intval($parameters['quoteNumber'])
       );
 
       return $this

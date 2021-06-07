@@ -27,7 +27,9 @@ return function (App $app) {
       );
   });
 
-  $app->get('/cotacao', 'QuotesController:index');
+  $app->get('/lista', 'QuotesController:index');
+
+  $app->get('/cotacao/{quoteNumber}', 'QuotesController:show');
 }
 
 ?>

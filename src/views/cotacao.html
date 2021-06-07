@@ -26,6 +26,9 @@
           <nav>
             <ul>
               <li>
+                <a href="#">Lista de Cotação</a>
+              </li>
+              <li>
                 <a href="#">Contato</a>
               </li>
               <li>
@@ -133,6 +136,8 @@
                       </div>
                     </td>
                   </tr>
+                {% else %}
+                  <strong>Nenhum item para ser cotado</strong>
                 {% endfor %}
               </tbody>
             </table>

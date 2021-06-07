@@ -69,16 +69,13 @@
           body: JSON.stringify(body),
         });
 
-        const data = await response.json();
-
         if (response.status !== 200) {
           errorMessage.innerText = data.message;
           errorMessage.style.display = 'block';
           return;
         }
 
-        localStorage.setItem('@movcotacao:token', data);
-        window.location.href = '/cotacao';
+        window.location.href = '/lista';
       }
 
       document.getElementById('signIn').addEventListener('submit', event => {

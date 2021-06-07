@@ -13,6 +13,7 @@
 
     public function delete(Request $request, Response $response): Response {
       setcookie('@movcotacao:token', '', time() - 3600, '/');
+      unset($_COOKIE['@movcotacao:token']);
 
       $settings = $this->container->get('settings');
       return $response->withHeader('Location', $settings['app_url'] . '/');

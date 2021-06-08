@@ -88,7 +88,11 @@
 
       $saveQuotes = new SaveQuotationService();
 
-      $saveQuotes->execute($userAuthenticated->company, $body['quotationItems']);
+      $saveQuotes->execute(
+        $userAuthenticated->company,
+        $body['quotationItems'],
+        isset($body['is_closing'])
+      );
 
       $settings = $this->container->get('settings');
 

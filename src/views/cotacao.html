@@ -191,7 +191,7 @@
 
             <div class="btn_group">
               <button id="saveQuotationItems">Salvar</button>
-              <button>Enviar cotação</button>
+              <button id="sendQuotationItems">Enviar cotação</button>
             </div>
           </div>
         </article>
@@ -214,7 +214,7 @@
     </script>
 
     <script>
-      document.getElementById('saveQuotationItems').addEventListener('click', () => {
+      function saveQuotationItems(is_closing = false) {
         const table = document.querySelector('table');
 
         const rows = Array.prototype.slice.call(table.rows);
@@ -255,9 +255,28 @@
           index += 1;
         });
 
+        const inputCheck = document.createElement('input');
+        inputCheck.name = "is_closing";
+        inputCheck.type = "checkbox";
+        inputCheck.checked = is_closing;
+
+        formSaveQuotationItems.append(inputCheck);
+
         document.body.append(formSaveQuotationItems);
         formSaveQuotationItems.submit();
-      });
+      }
+
+      document
+        .getElementById('saveQuotationItems')
+        .addEventListener('click', () => {
+          saveQuotationItems();
+        });
+
+      document
+        .getElementById('sendQuotationItems')
+        .addEventListener('click', () => {
+          saveQuotationItems(true);
+        });
     </script>
   </body>
 </html>

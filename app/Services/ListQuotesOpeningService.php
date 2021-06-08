@@ -9,6 +9,8 @@ class ListQuotesOpeningService {
     $listQuotesOpeningQuery = "
       SELECT * FROM ibmax01.movcotacao
         WHERE fornecedor = {$company}
+        AND ISNULL(data_fechamento)
+        AND NOW() <= data_validade
         GROUP BY numero_cotacao ;
     ";
 

@@ -3,22 +3,29 @@
   use App\Database\Connection;
 
 class SaveQuotationService {
-  public function execute(string $company, array $quotes) {
+  public function execute(string $company, array $quotes, bool $is_closing) {
     $connection = Connection::getConnection();
 
     $errors = array();
 
-    array_walk($quotes, function($quotation) use ($company, $connection) {
+    array_walk($quotes, function($quotation) use ($company, $is_closing, $connection) {
+      $setPartOfQuery = "
+        valor_ofertado = {$quotation['valor_ofertado']},
+        observacao = '{$quotation['observacao']}'
+      ";
+
+      if ($is_closing) {
+        $setPartOfQuery .= ", data_fechamento = NOW()";
+      }
+
       $updateQuoteQuery = "
         UPDATE movcotacao
-        SET
-          valor_ofertado = {$quotation['valor_ofertado']},
-          observacao = '{$quotation['observacao']}'
-            WHERE fornecedor = {$company}
-              AND id_sku = {$quotation['id_sku']}
-              AND id_produto = {$quotation['id_produto']}
-              AND id_referencia = '{$quotation['id_referencia']}'
-              LIMIT 1
+        SET {$setPartOfQuery}
+          WHERE fornecedor = {$company}
+            AND id_sku = {$quotation['id_sku']}
+            AND id_produto = {$quotation['id_produto']}
+            AND id_referencia = '{$quotation['id_referencia']}'
+            LIMIT 1
       ";
 
       $result = $connection->query($updateQuoteQuery);

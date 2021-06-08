@@ -791,6 +791,8 @@ body {
 .mobileMenu button {
   font-size: 1.875rem;
   line-height: 2.25rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   position: absolute;
   top: 1rem;
   right: 1rem;

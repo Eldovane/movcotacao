@@ -80,7 +80,7 @@ body {
 .mobileMenu button {
   @apply
     absolute top-4 right-4
-    text-3xl text-white;
+    text-3xl text-white outline-none;
 }
 
 .mobileMenu ul li {

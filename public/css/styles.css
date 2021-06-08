@@ -637,13 +637,12 @@ body {
 }
 
 .loginContainer header {
-  --tw-bg-opacity: 1;
-  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
   margin-bottom: 0.75rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  background: #30b053;
 }
 
 .loginContainer header h1 {
@@ -726,11 +725,6 @@ body {
   margin-top: 0.75rem;
 }
 
-.loginContainer form button {
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
-}
-
 .loginContainer form button:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
@@ -744,6 +738,7 @@ body {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
   width: 6rem;
+  background: #30b053;
 }
 
 .loginContainer form > p {
@@ -827,8 +822,6 @@ body {
 }
 
 .quotation > header {
-  --tw-bg-opacity: 1;
-  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -848,6 +841,10 @@ body {
     border-top-right-radius: 0.375rem;
     flex-direction: row;
   }
+}
+
+.quotation > header {
+  background: #30b053;
 }
 
 .quotation > header h1 {
@@ -1212,18 +1209,19 @@ body {
 }
 
 .quotation section article .quotes table thead {
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
-  --tw-border-opacity: 1;
-  border-color: rgba(16, 185, 129, var(--tw-border-opacity));
   border-width: 1px;
-  display: none;
+  display: none
 }
 
 @media (min-width: 640px) {
   .quotation section article .quotes table thead {
     display: table-header-group;
   }
+}
+
+.quotation section article .quotes table thead {
+  background: #30b053;
+  border-color: #30b053;
 }
 
 .quotation section article .quotes table thead tr th {
@@ -1312,14 +1310,13 @@ body {
 .quotation section article .quotes table tbody tr td::before {
   content: attr(data-label);
   width: 40%;
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
   display: flex;
   align-items: center;
   padding: 0.5rem;
   text-align: left;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
+  background: #30b053;
 }
 
 @media (min-width: 640px) {
@@ -1400,8 +1397,6 @@ body {
 }
 
 .quotation section article .quotes .btn_group button {
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
   border-radius: 0.375rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1411,6 +1406,7 @@ body {
   padding-right: 1.25rem;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
+  background: #30b053;
 }
 
 .quotation section article .quotes .btn_group button + button {
@@ -1418,9 +1414,7 @@ body {
 }
 
 .quotation section article .quotes .btn_group button:hover {
-  box-shadow: 0px 4px 12px rgba(4, 120, 87);
-  --tw-bg-opacity: 1;
-  background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+  box-shadow: 0px 4px 12px #30b053;
 }
 
 /* Fim "Tela de cotação" */

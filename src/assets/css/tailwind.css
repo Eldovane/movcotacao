@@ -23,7 +23,8 @@ body {
 }
 
 .loginContainer header {
-  @apply bg-green-700 rounded-tl-md rounded-tr-md mb-3 py-2;
+  @apply rounded-tl-md rounded-tr-md mb-3 py-2;
+  background: #30b053;
 }
 
 .loginContainer header h1 {
@@ -47,7 +48,8 @@ body {
 }
 
 .loginContainer form button {
-  @apply rounded-md bg-green-500 text-white p-2 mt-5 w-24 hover:bg-green-600 font-bold;
+  @apply rounded-md text-white p-2 mt-5 w-24 hover:bg-green-600 font-bold;
+  background: #30b053;
 }
 
 .loginContainer form > p {
@@ -96,11 +98,12 @@ body {
 
 .quotation > header {
   @apply
-    bg-green-700 text-white
+    text-white
     py-5 px-10 relative
     flex flex-col justify-between items-center
     sm:rounded-t-md
     sm:flex-row;
+  background: #30b053;
 }
 
 .quotation > header h1 {
@@ -284,8 +287,9 @@ body {
 
 .quotation section article .quotes table thead {
   @apply
-    hidden sm:table-header-group
-    bg-green-500 border-green-500 border;
+    hidden sm:table-header-group border;
+  background: #30b053;
+  border-color: #30b053
 }
 
 .quotation section article .quotes table thead tr th {
@@ -328,7 +332,8 @@ body {
 .quotation section article .quotes table tbody tr td::before {
   content: attr(data-label);
   width: 40%;
-  @apply bg-green-500 text-white text-left p-2 flex items-center;
+  @apply text-white text-left p-2 flex items-center;
+  background: #30b053;
 }
 
 @screen sm {
@@ -372,7 +377,8 @@ body {
 }
 
 .quotation section article .quotes .btn_group button {
-  @apply bg-green-500 rounded-md py-2 px-5 text-white text-lg;
+  @apply rounded-md py-2 px-5 text-white text-lg;
+  background: #30b053;
 }
 
 .quotation section article .quotes .btn_group button + button {
@@ -380,8 +386,7 @@ body {
 }
 
 .quotation section article .quotes .btn_group button:hover {
-  box-shadow: 0px 4px 12px rgba(4, 120, 87);
-  @apply bg-green-700;
+  box-shadow: 0px 4px 12px #30b053;
 }
 
 /* Fim "Tela de cotação" */

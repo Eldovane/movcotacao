@@ -95,7 +95,7 @@
             <div class="quotationNumber">
               <strong>COTAÇÃO - N°</strong>
               <div>
-                <p>{{ listQuotesOpening[0]['numero_cotacao'] }}</p>
+                <p>{{ quotationInfo['numero_cotacao'] }}</p>
               </div>
             </div>
 
@@ -104,7 +104,7 @@
                 <p>Data de Abertura</p>
                 <div class="opening">
                   <img src="/svg/calenderGreen.svg" alt="Calendario icone" />
-                  <p>{{ listQuotesOpening[0]['data_abertura'] }}</p>
+                  <p>{{ quotationInfo['data_abertura'] }}</p>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@
                 <p>Data de Fechamento</p>
                 <div class="closing">
                   <img src="/svg/calenderRed.svg" alt="Calendario icone" />
-                  <p>{{ listQuotesOpening[0]['data_validade'] }}</p>
+                  <p>{{ quotationInfo['data_validade'] }}</p>
                 </div>
               </div>
             </div>
@@ -133,31 +133,39 @@
               </thead>
 
               <tbody>
-                {% for quote in listQuotesOpening %}
+                {% for quotation in listQuotesOpening %}
                   <tr>
                     <td data-label="Cód. SKU">
-                      <div>{{quote['id_sku']}}</div>
+                      <div>{{quotation['id_sku']}}</div>
                     </td>
                     <td data-label="Cód. Produto">
-                      <div>{{quote['id_produto']}}</div>
+                      <div>{{quotation['id_produto']}}</div>
                     </td>
                     <td data-label="Cód. Referência">
-                      <div>{{quote['id_referencia']}}</div>
+                      <div>{{quotation['id_referencia']}}</div>
                     </td>
                     <td data-label="Desc. Produto">
-                      <div>{{quote['descricao_produto']}}</div>
+                      <div>{{quotation['descricao_produto']}}</div>
                     </td>
                     <td data-label="Qtd. a Comparar">
-                      <div>{{quote['quantidade_produto']}}</div>
+                      <div>{{quotation['quantidade_produto']}}</div>
                     </td>
                     <td data-label="Oferta (R$)">
                       <div class="inputContainer">
-                        <input type="text" placeholder="0,00" />
+                        <input
+                          type="text"
+                          placeholder="0,00"
+                          value="{{quotation['valor_ofertado']}}"
+                        />
                       </div>
                     </td>
                     <td data-label="Observação">
                       <div class="inputContainer">
-                        <input type="text" placeholder="Texto de observação" />
+                        <input
+                          type="text"
+                          placeholder="Texto de observação"
+                          value="{{quotation['observacao']}}"
+                        />
                       </div>
                     </td>
                   </tr>
@@ -182,7 +190,7 @@
             </div>
 
             <div class="btn_group">
-              <button>Salvar</button>
+              <button id="saveQuotationItems">Salvar</button>
               <button>Enviar cotação</button>
             </div>
           </div>
@@ -202,6 +210,53 @@
 
       document.getElementById('closeMenu').addEventListener('click', () => {
         document.querySelector('.mobileMenu').style.display = 'none';
+      });
+    </script>
+
+    <script>
+      document.getElementById('saveQuotationItems').addEventListener('click', () => {
+        const table = document.querySelector('table');
+
+        const rows = Array.prototype.slice.call(table.rows);
+
+        rows.shift();
+
+        const quotationItems = rows.map(row => {
+          return {
+            id_sku: Number(row.cells[0].children[0].innerText),
+            id_produto: Number(row.cells[1].children[0].innerText),
+            id_referencia: row.cells[2].children[0].innerText,
+            descricao_produto: row.cells[3].children[0].innerText,
+            quantidade_produto: Number(row.cells[4].children[0].innerText),
+            valor_ofertado: Number(row.cells[5].children[0].children[0].value),
+            observacao: row.cells[6].children[0].children[0].value,
+          }
+        });
+
+        const formSaveQuotationItems = document.createElement('form');
+        formSaveQuotationItems.action = '/save_quotation_items';
+        formSaveQuotationItems.method = 'POST'
+        formSaveQuotationItems.style.display = 'none';
+
+        let index = 0;
+
+        quotationItems.forEach(quotationItem => {
+          const keys = Object.keys(quotationItem);
+
+          keys.forEach(key => {
+            const input = document.createElement('input');
+
+            input.name = `quotationItems[${index}][${key}]`;
+            input.value = quotationItem[key];
+
+            formSaveQuotationItems.append(input);
+          });
+
+          index += 1;
+        });
+
+        document.body.append(formSaveQuotationItems);
+        formSaveQuotationItems.submit();
       });
     </script>
   </body>

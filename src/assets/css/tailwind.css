@@ -163,6 +163,9 @@ body {
   z-index: 99;
 }
 
+/* Lista de cotações */
+/* Essa parte é para página de lista de cotações */
+
 .quotation section article h2 {
   @apply text-xl text-gray-800 font-bold;
 }
@@ -172,12 +175,21 @@ body {
 }
 
 .quotation section article .list a {
-  @apply bg-green-500 p-4 rounded-md text-white;
+  @apply
+    bg-green-500 p-4 rounded-md text-white
+    sm:flex sm:flex-wrap
+  ;
 }
 
 .quotation section article .list a + a {
   @apply mt-2;
 }
+
+.quotation section article .list a p + p {
+  @apply sm:ml-5;
+}
+
+/* Fim de 'lista de cotações' */
 
 .quotation section article header {
   @apply

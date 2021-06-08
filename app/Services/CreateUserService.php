@@ -94,6 +94,8 @@
       $result = $connection->query($insertUserQuery);
 
       if (!$result) {
+        $connection->close();
+
         throw new Exception(
           "Houve um erro ao tentar cadastrar o usuário! {$connection->error}",
           500

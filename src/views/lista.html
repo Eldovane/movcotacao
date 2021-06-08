@@ -61,16 +61,33 @@
         </div>
       </header>
 
+
       <section>
         <div class="background"></div>
         <article>
           <h2>Lista de cotações</h2>
           <div class="list">
-            {% for quote in listQuotesOpening %}
-              <a href="/cotacao/{{ quote['numero_cotacao'] }}">
-                <strong>
-                  Cotação {{ quote['numero_cotacao'] }}
-                </strong>
+            {% for quotation in listQuotesOpening %}
+              <a href="/cotacao/{{ quotation['numero_cotacao'] }}">
+                <p>
+                  <strong>Número Cotação: </strong>
+                  <span>{{ quotation['numero_cotacao'] }}</span>
+                </p>
+
+                <p>
+                  <strong>Empresa: </strong>
+                  <span>{{ quotation['comprador'] }}</span>
+                </p>
+
+                <p>
+                  <strong>Data Abertura: </strong>
+                  <span>{{ quotation['data_abertura'] }}</span>
+                </p>
+
+                <p>
+                  <strong>Data Fechamento: </strong>
+                  <span>{{ quotation['data_validade'] }}</span>
+                </p>
               </a>
             {% else %}
               <strong>Nenhum item para ser cotado</strong>

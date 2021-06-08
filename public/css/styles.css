@@ -997,6 +997,10 @@ body {
   z-index: 99;
 }
 
+/* Lista de cotações */
+
+/* Essa parte é para página de lista de cotações */
+
 .quotation section article h2 {
   font-weight: 700;
   font-size: 1.25rem;
@@ -1021,9 +1025,24 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+@media (min-width: 640px) {
+  .quotation section article .list a {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .quotation section article .list a + a {
   margin-top: 0.5rem;
 }
+
+@media (min-width: 640px) {
+  .quotation section article .list a p + p {
+    margin-left: 1.25rem;
+  }
+}
+
+/* Fim de 'lista de cotações' */
 
 .quotation section article header {
   display: flex;

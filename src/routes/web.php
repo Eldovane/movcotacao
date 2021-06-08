@@ -30,6 +30,8 @@ return function (App $app) {
   $app->get('/lista', 'QuotesController:index');
 
   $app->get('/cotacao/{quoteNumber}', 'QuotesController:show');
+
+  $app->post('/save_quotation_items', 'QuotesController:update');
 }
 
 ?>

@@ -26,9 +26,23 @@ class GetOpenQuoteDataService {
 
     $company = $connection->query($companyQuery)->fetch_assoc();
 
+    $openingDate = date_create($listQuotesOpening[0]['data_abertura']);
+    $closingDate = date_create($listQuotesOpening[0]['data_validade']);
+
+    $quotationInfo = array(
+      'numero_cotacao' => $listQuotesOpening[0]['numero_cotacao'],
+      'data_abertura' => date_format($openingDate, 'd/m/Y H:i:s'),
+      'data_validade' => date_format($closingDate, 'd/m/Y H:i:s')
+    );
+
+    array_merge($quotationInfo, $company);
+
+    $connection->close();
+
     return [
       'listQuotesOpening' => $listQuotesOpening,
-      'company' => $company
+      'company' => $company,
+      'quotationInfo' => $quotationInfo
     ];
   }
   }

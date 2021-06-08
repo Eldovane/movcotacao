@@ -6,6 +6,7 @@
   use Firebase\JWT\JWT;
   use App\Services\ListQuotesOpeningService;
   use App\Services\GetOpenQuoteDataService;
+  use App\Services\SaveQuotationService;
 
   class QuotesController {
     private $container;
@@ -67,6 +68,31 @@
         ->container
           ->get('view')
           ->render($response, 'cotacao.html', $result);
+    }
+
+    public function update(Request $request, Response $response, $parameters) {
+      if(!isset($_COOKIE['@movcotacao:token'])) {
+        $settings = $this->container->get('settings');
+        return $response->withHeader('Location', $settings['app_url'] . '/');
+      }
+
+      $userAuthenticatedToken = $_COOKIE['@movcotacao:token'];
+
+      $userAuthenticated = JWT::decode(
+        $userAuthenticatedToken,
+        $_ENV['JWT_KEY'],
+        ['HS256']
+      );
+
+      $body = $request->getParsedBody();
+
+      $saveQuotes = new SaveQuotationService();
+
+      $saveQuotes->execute($userAuthenticated->company, $body['quotationItems']);
+
+      $settings = $this->container->get('settings');
+
+      return $response->withHeader('Location', $settings['app_url'] . '/lista');
     }
   }
 ?>

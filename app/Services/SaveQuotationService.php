@@ -25,6 +25,7 @@ class SaveQuotationService {
             AND id_sku = {$quotation['id_sku']}
             AND id_produto = {$quotation['id_produto']}
             AND id_referencia = '{$quotation['id_referencia']}'
+            AND numero_cotacao = {$quotation['numero_cotacao']}
             LIMIT 1
       ";
 

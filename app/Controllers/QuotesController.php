@@ -90,6 +90,7 @@
 
       $saveQuotes->execute(
         $userAuthenticated->company,
+        intval($body['quotationNumber']),
         $body['quotationItems'],
         isset($body['is_closing'])
       );

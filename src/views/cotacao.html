@@ -147,7 +147,7 @@
                     <td data-label="Desc. Produto">
                       <div>{{quotation['descricao_produto']}}</div>
                     </td>
-                    <td data-label="Qtd. a Comparar">
+                    <td id="" data-label="Qtd. a Comparar">
                       <div>{{quotation['quantidade_produto']}}</div>
                     </td>
                     <td data-label="Oferta (R$)">
@@ -240,6 +240,8 @@
 
         let index = 0;
 
+        console.log({ quotationItems });
+
         quotationItems.forEach(quotationItem => {
           const keys = Object.keys(quotationItem);
 
@@ -255,11 +257,16 @@
           index += 1;
         });
 
+        const input = document.createElement('input');
+        input.name = 'quotationNumber';
+        input.value = '{{ quotationInfo["numero_cotacao"] }}';
+
         const inputCheck = document.createElement('input');
         inputCheck.name = "is_closing";
         inputCheck.type = "checkbox";
         inputCheck.checked = is_closing;
 
+        formSaveQuotationItems.append(input);
         formSaveQuotationItems.append(inputCheck);
 
         document.body.append(formSaveQuotationItems);

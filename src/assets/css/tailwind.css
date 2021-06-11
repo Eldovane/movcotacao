@@ -7,12 +7,37 @@
 }
 
 body {
-  @apply w-full h-screen bg-center box-border relative;
+  @apply w-full h-screen bg-center box-border;
   background-image: url('/svg/background_lines.svg');
 }
 
 .appContainer {
   @apply p-1 h-full w-full sm:p-0 flex flex-col justify-center items-center;
+}
+
+.dialogBoxContainer {
+  @apply
+    hidden
+    fixed top-0 left-0 w-full h-full
+    flex flex-col justify-center items-center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 199;
+}
+
+.dialogBox {
+  @apply bg-white p-4 rounded-md;
+}
+
+.dialogBox strong {
+  @apply text-lg text-gray-900;
+}
+
+.dialogBox .dialogBoxActions {
+  @apply flex justify-around mt-4;
+}
+
+.dialogBox .dialogBoxActions button {
+  @apply bg-blue-500 text-white px-4 py-2 rounded-md;
 }
 
 /* Fim 'todos' */
@@ -349,10 +374,29 @@ body {
     sm:p-0;
 }
 
-.quotation section article .quotes table tbody tr td input {
+.quotation section article .quotes table tbody tr td .inputContainer input {
   @apply
     w-10/12 border-gray-500 border outline-none rounded-md
     text-gray-800 p-1;
+}
+
+.quotation section article .quotes table tbody tr td .actions {
+  @apply
+    flex justify-center items-center text-lg;
+}
+
+.quotation section article .quotes table tbody tr td .actions button + button {
+  @apply ml-2;
+}
+
+.quotation section article .quotes table tbody tr td .actions .add {
+  @apply outline-none;
+  color: #30b053;
+}
+
+.quotation section article .quotes table tbody tr td .actions .remove {
+  @apply outline-none;
+  color: #ca0c2c;
 }
 
 .quotation section article .quotes .pagination {

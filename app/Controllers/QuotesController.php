@@ -70,7 +70,7 @@
           ->render($response, 'cotacao.html', $result);
     }
 
-    public function update(Request $request, Response $response, $parameters) {
+    public function update(Request $request, Response $response) {
       if(!isset($_COOKIE['@movcotacao:token'])) {
         $settings = $this->container->get('settings');
         return $response->withHeader('Location', $settings['app_url'] . '/');
@@ -90,7 +90,7 @@
 
       $saveQuotes->execute(
         $userAuthenticated->company,
-        intval($body['quotationNumber']),
+        $body['quotationInfo'],
         $body['quotationItems'],
         isset($body['is_closing'])
       );

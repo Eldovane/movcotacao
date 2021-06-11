@@ -32,6 +32,21 @@
       </ul>
     </nav>
 
+    <div class="dialogBoxContainer">
+      <div class="dialogBox">
+        <strong id="dialogBoxMessage"></strong>
+
+        <div class="dialogBoxActions">
+          <button id="dialogBoxConfirmButton">
+            Sim
+          </button>
+          <button onclick="closeDialogBox()">
+            Não
+          </button>
+        </div>
+      </div>
+    </div>
+
     <section class="quotation">
       <header>
         <h1>Cotação Online</h1>
@@ -76,18 +91,18 @@
               <img src="/img/noprofile.jpg" alt="No Profile" />
 
               <div class="profileInfo">
-                <strong>{{ company['nome_fantasia'] }}</strong>
+                <strong>{{ quotationInfo['nome_fantasia'] }}</strong>
                 <p>
                   <i class="fas fa-phone-alt"></i>
-                  <span>{{ company['telefone'] }}</span>
+                  <span>{{ quotationInfo['telefone'] }}</span>
                 </p>
                 <p>
                   <i class="fab fa-whatsapp"></i>
-                  <span>{{ company['whatsapp'] }}</span>
+                  <span>{{ quotationInfo['whatsapp'] }}</span>
                 </p>
                 <p>
                   <i class="far fa-envelope"></i>
-                  <span>{{ company['email'] }}</span>
+                  <span>{{ quotationInfo['email'] }}</span>
                 </p>
               </div>
             </div>
@@ -126,49 +141,148 @@
                   <th>Cód. Produto</th>
                   <th>Cód. Referência</th>
                   <th>Desc. Produto</th>
-                  <th>Qtd. a Comparar</th>
+                  <th>Qtd. a Comprar</th>
                   <th>Oferta (R$)</th>
                   <th>Observação</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
 
               <tbody>
                 {% for quotation in listQuotesOpening %}
-                  <tr>
-                    <td data-label="Cód. SKU">
-                      <div>{{quotation['id_sku']}}</div>
-                    </td>
-                    <td data-label="Cód. Produto">
-                      <div>{{quotation['id_produto']}}</div>
-                    </td>
-                    <td data-label="Cód. Referência">
-                      <div>{{quotation['id_referencia']}}</div>
-                    </td>
-                    <td data-label="Desc. Produto">
-                      <div>{{quotation['descricao_produto']}}</div>
-                    </td>
-                    <td id="" data-label="Qtd. a Comparar">
-                      <div>{{quotation['quantidade_produto']}}</div>
-                    </td>
-                    <td data-label="Oferta (R$)">
-                      <div class="inputContainer">
-                        <input
-                          type="text"
-                          placeholder="0,00"
-                          value="{{quotation['valor_ofertado']}}"
-                        />
-                      </div>
-                    </td>
-                    <td data-label="Observação">
-                      <div class="inputContainer">
-                        <input
-                          type="text"
-                          placeholder="Texto de observação"
-                          value="{{quotation['observacao']}}"
-                        />
-                      </div>
-                    </td>
-                  </tr>
+                  {% if quotation.id_produto %}
+                    <tr id="item-{{loop.index}}">
+                      <td style="display: none;">
+                        {{quotation['id']}}
+                      </td>
+                      <td data-label="Cód. SKU">
+                        <div>{{quotation['id_sku']}}</div>
+                      </td>
+                      <td data-label="Cód. Produto">
+                        <div>{{quotation['id_produto']}}</div>
+                      </td>
+                      <td data-label="Cód. Referência">
+                        <div>{{quotation['id_referencia']}}</div>
+                      </td>
+                      <td data-label="Desc. Produto">
+                        <div>{{quotation['descricao_produto']}}</div>
+                      </td>
+                      <td data-label="Qtd. a Comprar">
+                        <div>{{quotation['quantidade_produto']}}</div>
+                      </td>
+                      <td data-label="Oferta (R$)">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="0,00"
+                            value="{{quotation['valor_ofertado']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Observação">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="Texto de observação"
+                            value="{{quotation['observacao']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Ações">
+                        <div class="actions">
+                          <button
+                            class="add"
+                            type="button"
+                            title="Adicionar semelhante"
+                            onclick='showDialogBoxAddNewItem(`{{quotation["id_sku"]}}`, `{{loop.index}}`)'
+                          >
+                            <i class="fas fa-plus-circle"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  {% else %}
+                    <tr
+                      data-new-item-created="true"
+                      id="item-{{loop.index}}"
+                    >
+                      <td style="display: none;">
+                        {{quotation['id']}}
+                      </td>
+                      <td data-label="Cód. SKU">
+                        <div>{{quotation['id_sku']}}</div>
+                      </td>
+                      <td data-label="Cód. Produto">
+                        <div></div>
+                      </td>
+                      <td data-label="Cód. Referência">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="Cód. Referência"
+                            value="{{quotation['id_referencia']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Desc. Produto">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="Desc. Produto"
+                            value="{{quotation['descricao_produto']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Qtd. a Comprar">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="Desc. Produto"
+                            value="{{quotation['quantidade_produto']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Oferta (R$)">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="0,00"
+                            value="{{quotation['valor_ofertado']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Observação">
+                        <div class="inputContainer">
+                          <input
+                            type="text"
+                            placeholder="Texto de observação"
+                            value="{{quotation['observacao']}}"
+                          />
+                        </div>
+                      </td>
+                      <td data-label="Ações">
+                        <div class="actions">
+                          <button
+                            class="add"
+                            type="button"
+                            title="Adicionar semelhante"
+                            onclick='showDialogBoxAddNewItem(`{{quotation["id_sku"]}}`, `{{loop.index}}`)'
+                          >
+                            <i class="fas fa-plus-circle"></i>
+                          </button>
+
+                          <button
+                            class="remove"
+                            type="button"
+                            title="Remover item"
+                            onclick="showDialogBoxRemoveNewItem(`{{loop.index}}`)"
+                          >
+                            <i class="fas fa-times-circle"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endif %}
                 {% else %}
                   <strong>Nenhum item para ser cotado</strong>
                 {% endfor %}
@@ -214,6 +328,160 @@
     </script>
 
     <script>
+      const dialogBoxContainer = document.querySelector('.dialogBoxContainer');
+      const dialogBoxMessage = document.getElementById('dialogBoxMessage');
+      const dialogBoxConfirmButton = document.getElementById('dialogBoxConfirmButton');
+      let id_sku = '';
+      let index = null;
+
+      function showDialogBoxAddNewItem(selectedSku, selectedIndex) {
+        dialogBoxContainer.style.display = 'flex';
+        dialogBoxMessage.innerText = 'Deseja adicionar um novo item?';
+
+        dialogBoxConfirmButton.addEventListener('click', addNewItem);
+
+        id_sku = selectedSku;
+        index = selectedIndex;
+      }
+
+      function showDialogBoxRemoveNewItem(selectedIndex) {
+        dialogBoxContainer.style.display = 'flex';
+        dialogBoxMessage.innerText = 'Deseja remover esse item?';
+
+        dialogBoxConfirmButton.addEventListener('click', removeNewItem);
+
+        index= selectedIndex;
+      }
+
+      function closeDialogBox() {
+        dialogBoxContainer.style.display = 'none';
+        dialogBoxMessage.innerText = '';
+        dialogBoxConfirmButton.removeEventListener('click', addNewItem, false);
+        dialogBoxConfirmButton.removeEventListener('click', removeNewItem, false);
+
+        id_sku = '';
+        index = null;
+      }
+
+      function addNewItem() {
+        dialogBoxContainer.style.display = 'none';
+
+        const row = document.getElementById(`item-${index}`);
+
+        const amoutProduct = row.cells[4].children[0].innerText;
+
+        const table = document.querySelector('table');
+
+        const rows = Array.prototype.slice.call(table.rows);
+
+        const indexOfRow = rows.indexOf(row);
+
+        const newRowIndex = indexOfRow + 1;
+
+        const newRow = table.insertRow(newRowIndex);
+
+        newRow.setAttribute('data-new-item', 'true');
+
+        const cellsOfNewRow = [
+          {
+            labelValue: 'Cód. SKU',
+            content: `${id_sku}`,
+          },
+          {
+            labelValue: 'Cód. Produto',
+            content: '',
+          },
+          {
+            labelValue: 'Cód. Referência',
+            class: 'inputContainer',
+            content: `
+              <input type="text" placeholder="Cód. Referência" />
+            `,
+          },
+          {
+            labelValue: 'Desc. Produto',
+            class: 'inputContainer',
+            content: `
+              <input type="text" placeholder="Desc. Produto" />
+            `,
+          },
+          {
+            labelValue: 'Qtd. a Comprar',
+            class: 'inputContainer',
+            content: `
+              <input
+                type="text"
+                placeholder="Qtd. a Comprar"
+                value="${amoutProduct}"
+              />
+            `,
+          },
+          {
+            labelValue: 'Oferta (R$)',
+            class: 'inputContainer',
+            content: `
+              <input type="text" placeholder="0,00" />
+            `,
+          },
+          {
+            labelValue: 'Observação',
+            class: 'inputContainer',
+            content: `
+              <input type="text" placeholder="Observação" />
+            `,
+          },
+          {
+            labelValue: 'Ações',
+            class: 'actions',
+            content: `
+              <button
+                class="add"
+                type="button"
+                title="Adicionar semelhante"
+                onclick='showDialogBoxAddNewItem("{{quotation["id_sku"]}}", "{{loop.index}}")'
+              >
+                <i class="fas fa-plus-circle"></i>
+              </button>
+
+              <button
+                class="remove"
+                type="button"
+                title="Remover item"
+                onclick="showDialogBoxRemoveNewItem("{{loop.index}}")"
+              >
+                <i class="fas fa-times-circle"></i>
+              </button>
+            `,
+          }
+        ];
+
+        cellsOfNewRow.forEach((cell, index) => {
+          const newCell = newRow.insertCell(index);
+
+          newCell.setAttribute('data-label', cell.labelValue);
+
+          const content = document.createElement('div');
+          content.setAttribute('class', cell.class);
+
+          content.innerHTML = cell.content;
+
+          newCell.append(content);
+        });
+      }
+
+      function removeNewItem() {
+        dialogBoxContainer.style.display = 'none';
+
+        const row = document.getElementById(`item-${index}`);
+
+        row.removeAttribute('data-new-item-created');
+        row.removeAttribute('data-new-item');
+
+        row.setAttribute('data-removed-item', 'true');
+
+        row.style.display = 'none';
+      }
+
       function saveQuotationItems(is_closing = false) {
         const table = document.querySelector('table');
 
@@ -222,14 +490,65 @@
         rows.shift();
 
         const quotationItems = rows.map(row => {
+          if (JSON.parse(row.getAttribute('data-new-item'))) {
+            if (
+              row.cells[4].children[0].children[0].value &&
+              row.cells[5].children[0].children[0].value
+            ) {
+              return {
+                id: Number(row.cells[0].innerText),
+                id_sku: Number(row.cells[1].children[0].innerText),
+                id_produto: null,
+                id_referencia: row.cells[3].children[0].children[0].value,
+                descricao_produto: row.cells[4].children[0].children[0].value,
+                quantidade_produto: Number(row.cells[5].children[0].children[0].value) || null,
+                valor_ofertado: Number(row.cells[6].children[0].children[0].value) || null,
+                observacao: row.cells[7].children[0].children[0].value,
+                new_item: true,
+              }
+            }
+
+            return null;
+          }
+
+          if (JSON.parse(row.getAttribute('data-new-item-created'))) {
+            if (
+              row.cells[4].children[0].children[0].value &&
+              row.cells[5].children[0].children[0].value
+            ) {
+              return {
+                id: Number(row.cells[0].innerText),
+                id_sku: Number(row.cells[1].children[0].innerText),
+                id_produto: null,
+                id_referencia: row.cells[3].children[0].children[0].value,
+                descricao_produto: row.cells[4].children[0].children[0].value,
+                quantidade_produto: Number(row.cells[5].children[0].children[0].value) || null,
+                valor_ofertado: Number(row.cells[6].children[0].children[0].value) || null,
+                observacao: row.cells[7].children[0].children[0].value,
+                new_item_created: true
+              }
+            }
+
+            return null;
+          }
+
+          if (JSON.parse(row.getAttribute('data-removed-item'))) {
+            return {
+              id: Number(row.cells[0].innerText),
+              id_sku: Number(row.cells[1].children[0].innerText),
+              removed_item: true,
+            }
+          }
+
           return {
-            id_sku: Number(row.cells[0].children[0].innerText),
-            id_produto: Number(row.cells[1].children[0].innerText),
-            id_referencia: row.cells[2].children[0].innerText,
-            descricao_produto: row.cells[3].children[0].innerText,
-            quantidade_produto: Number(row.cells[4].children[0].innerText),
-            valor_ofertado: Number(row.cells[5].children[0].children[0].value),
-            observacao: row.cells[6].children[0].children[0].value,
+            id: Number(row.cells[0].innerText),
+            id_sku: Number(row.cells[1].children[0].innerText),
+            id_produto: Number(row.cells[2].children[0].innerText),
+            id_referencia: row.cells[3].children[0].innerText,
+            descricao_produto: row.cells[4].children[0].innerText,
+            quantidade_produto: Number(row.cells[5].children[0].innerText) || null,
+            valor_ofertado: Number(row.cells[6].children[0].children[0].value) || null,
+            observacao: row.cells[7].children[0].children[0].value,
           }
         });
 
@@ -240,12 +559,42 @@
 
         let index = 0;
 
-        console.log({ quotationItems });
-
-        quotationItems.forEach(quotationItem => {
+        quotationItems
+          .filter(quotationItem => quotationItem !== null)
+          .forEach(quotationItem => {
           const keys = Object.keys(quotationItem);
 
           keys.forEach(key => {
+            if (key === 'new_item') {
+              const inputCheck = document.createElement('input');
+              inputCheck.type = "checkbox";
+              inputCheck.name = `quotationItems[${index}][${key}]`;
+              inputCheck.checked = true;
+
+              formSaveQuotationItems.append(inputCheck);
+              return;
+            }
+
+            if (key === 'new_item_created') {
+              const inputCheck = document.createElement('input');
+              inputCheck.type = "checkbox";
+              inputCheck.name = `quotationItems[${index}][${key}]`;
+              inputCheck.checked = true;
+
+              formSaveQuotationItems.append(inputCheck);
+              return;
+            }
+
+            if (key === 'removed_item') {
+              const inputCheck = document.createElement('input');
+              inputCheck.type = "checkbox";
+              inputCheck.name = `quotationItems[${index}][${key}]`;
+              inputCheck.checked = true;
+
+              formSaveQuotationItems.append(inputCheck);
+              return;
+            }
+
             const input = document.createElement('input');
 
             input.name = `quotationItems[${index}][${key}]`;
@@ -257,16 +606,29 @@
           index += 1;
         });
 
-        const input = document.createElement('input');
-        input.name = 'quotationNumber';
-        input.value = '{{ quotationInfo["numero_cotacao"] }}';
+        const quotationInfo = {
+          comprador: Number("{{ quotationInfo['comprador'] }}"),
+          numero_cotacao: Number("{{ quotationInfo['numero_cotacao'] }}"),
+          data_abertura: "{{ quotationInfo['data_abertura'] }}",
+          data_validade: "{{ quotationInfo['data_validade'] }}",
+        };
+
+        const quotationInfoKeys = Object.keys(quotationInfo);
+
+        quotationInfoKeys.forEach(key => {
+          const input = document.createElement('input');
+          input.name = `quotationInfo[${key}]`;
+          input.value = quotationInfo[key];
+
+          formSaveQuotationItems.append(input);
+        });
 
         const inputCheck = document.createElement('input');
+
         inputCheck.name = "is_closing";
         inputCheck.type = "checkbox";
         inputCheck.checked = is_closing;
 
-        formSaveQuotationItems.append(input);
         formSaveQuotationItems.append(inputCheck);
 
         document.body.append(formSaveQuotationItems);

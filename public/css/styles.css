@@ -562,7 +562,6 @@ body {
   background-position: center;
   box-sizing: border-box;
   height: 100vh;
-  position: relative;
   width: 100%;
   background-image: url('/svg/background_lines.svg');
 }
@@ -581,6 +580,53 @@ body {
   .appContainer {
     padding: 0px;
   }
+}
+
+.dialogBoxContainer {
+  display: flex;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 199;
+}
+
+.dialogBox {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  border-radius: 0.375rem;
+  padding: 1rem;
+}
+
+.dialogBox strong {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.dialogBox .dialogBoxActions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.dialogBox .dialogBoxActions button {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 /* Fim 'todos' */
@@ -1341,7 +1387,7 @@ body {
   }
 }
 
-.quotation section article .quotes table tbody tr td input {
+.quotation section article .quotes table tbody tr td .inputContainer input {
   --tw-border-opacity: 1;
   border-color: rgba(107, 114, 128, var(--tw-border-opacity));
   border-radius: 0.375rem;
@@ -1352,6 +1398,30 @@ body {
   --tw-text-opacity: 1;
   color: rgba(31, 41, 55, var(--tw-text-opacity));
   width: 83.333333%;
+}
+
+.quotation section article .quotes table tbody tr td .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.quotation section article .quotes table tbody tr td .actions button + button {
+  margin-left: 0.5rem;
+}
+
+.quotation section article .quotes table tbody tr td .actions .add {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  color: #30b053;
+}
+
+.quotation section article .quotes table tbody tr td .actions .remove {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  color: #ca0c2c;
 }
 
 .quotation section article .quotes .pagination {

@@ -73,6 +73,7 @@
 
         if (response.status !== 200) {
           const data = await response.json();
+          console.log({ data })
 
           errorMessage.innerText = data.message;
           errorMessage.style.display = 'block';
